@@ -31,7 +31,7 @@ type crlfReplaceReader struct {
 	rdr *bufio.Reader
 }
 
-// This Read method implements io.Reader required for type crlfReplaceReader.
+// Read implements io.Reader required for type crlfReplaceReader.
 func (c crlfReplaceReader) Read(p []byte) (n int, err error) {
 	if len(p) == 0 {
 		return
