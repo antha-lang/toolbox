@@ -15,7 +15,6 @@ func BetterNewReader(r io.Reader) *csv.Reader {
   return bnr
 }
 
-
 // ReplaceSoloCarriageReturns wraps an io.Reader; for every call of Read,
 // replacing instances of lonely \r with \r\n. Lots of files in the wild will
 // come without "proper" line breaks, which irritates go's standard csv package.
@@ -27,12 +26,12 @@ func ReplaceSoloCarriageReturns(data io.Reader) io.Reader {
 	}
 }
 
-// crlfReplaceReader wraps a reader.
+// crlfReplaceReader wraps a reader. (A user provided Read method is required.)
 type crlfReplaceReader struct {
 	rdr *bufio.Reader
 }
 
-// This Read method implements io.Reader for type crlfReplaceReader.
+// This Read method implements io.Reader required for type crlfReplaceReader.
 func (c crlfReplaceReader) Read(p []byte) (n int, err error) {
 	if len(p) == 0 {
 		return
