@@ -6,13 +6,13 @@ import (
 	"io"
 )
 
-// BetterNewReader returns a new Reader that reads from r, with some
-// additional intermediatiary operations.
-func BetterNewReader(r io.Reader) *csv.Reader {
+// NewTolerantReader returns a new Reader that reads from r, with some
+// additional steps taken to tolerate certain attributes found in some csv files.
+func NewTolerantReader(r io.Reader) *csv.Reader {
 
-  // Replace \r carriage returns with \n newlines.
-  bnr := csv.NewReader(ReplaceSoloCarriageReturns(r))
-  return bnr
+	// Replace \r carriage returns with \n newlines.
+	bnr := csv.NewReader(ReplaceSoloCarriageReturns(r))
+	return bnr
 }
 
 // ReplaceSoloCarriageReturns wraps an io.Reader; for every call of Read,
