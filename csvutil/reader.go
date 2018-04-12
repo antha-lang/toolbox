@@ -58,5 +58,4 @@ func (c crlfReplaceReader) Read(p []byte) (n int, err error) {
 
 		n++
 	}
-	return
 }
